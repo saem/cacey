@@ -16,7 +16,7 @@
 var express = require('express')
 var app = express.createServer();
 
-contentHash = {'sha1:content' : 'your mom'}
+contentHash = {'sha-1:content' : 'your mom'}
 
 app.configure(function() {
   app.use(express.methodOverride())
@@ -36,15 +36,36 @@ app.configure('production', function(){
 
 //Setup the routes
 
-app.get('/:hashing/:contentKey', function(req, res) {
-  var content = contentHash[createHashKey(req.params['hashing'], req.params['contentKey'])];
-  if(content == null) { send404(res); } else { res.send(content, 200); }
-  res.send(content);
+app.get('/hashing', function(req, res) {
+  res.send(supportedHashingSchemes(), 200);
 });
 
-app.post('/:hashing/:contentKey', function(req, res) {
-  var hashing = req.params['hashing'];
-  var contentKey = req.params['contentKey'];
+app.get('/hashing/:hashing', function(req, res) {
+  var requestedScheme = req.params['hashing'];
+  if(!requestedScheme) { send404(res); }
+  var schemes = supportedHashingSchemes();
+  var i = schemes.length;
+  while(i--) {
+    if(schemes[i] == requestedScheme.toLowerCase()) {
+      res.send('Supported Scheme', 200);
+      return;
+    }
+  }
+  send404(res);
+});
+
+app.get('/hashing/:hashingScheme/content', function(req, res) {
+  res.send('TODO: Fire off a list of keys for the requested hashing scheme', 200);
+});
+
+app.get('/hashing/:hashing/content/:contentKey', function(req, res) {
+  var content = contentHash[createHashKey(req.query['hashing'], req.params['contentKey'])];
+  if(content == null) { send404(res); } else { res.send(content, 200); }
+});
+
+app.post('/content', function(req, res) {
+  var hashing = 'sha-1';
+  var contentKey = contentHash.size() + 1;
 
   var content = req.body['content'];
 
@@ -60,6 +81,10 @@ app.get(/.*/, function(req, res) {
 
 function createHashKey(hashingScheme, hash) {
   return hashingScheme + ':' + hash;
+}
+
+function supportedHashingSchemes() {
+  return Array('sha-1');
 }
 
 function send404(res) { res.send('WTF?', 404); }
