@@ -45,11 +45,11 @@ app.get('/:hashing/:contentKey', function(req, res) {
 app.post('/:hashing/:contentKey', function(req, res) {
   var hashing = req.params['hashing'];
   var contentKey = req.params['contentKey'];
-  
+
   var content = req.body['content'];
-  
+
   var key = createHashKey(hashing, contentKey);
-  
+
   contentHash[key] = content;
   res.redirect('/' + hashing + '/' + contentKey, 200);
 });

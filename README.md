@@ -10,6 +10,12 @@ So clients could simply call the server server.com/<hashing scheme>/<base64 enco
 
 Additionally, we can put new content in by way of a POST -- this still needs to be secured.
 
+## Install
+
+* Install node (https://github.com/ry/node/wiki/Installation)
+* Install npm (https://github.com/isaacs/npm)
+* NODE_ENV=(development|production) node cacey.js (note I use supervisor (https://github.com/fgnass/node-dev) during development)
+
 ## TODO
 
 * Secure posting
