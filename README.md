@@ -16,11 +16,19 @@ Additionally, we can put new content in by way of a POST -- this still needs to 
 * Install npm (https://github.com/isaacs/npm)
 * NODE_ENV=(development|production) node cacey.js (note I use supervisor (https://github.com/fgnass/node-dev) during development)
 
+## API
+
+/content -> this is where you POST new content
+/hashing -> get a list of supported hashing schemes
+/hashing/<scheme> -> return whether this scheme is supported or not
+/hashing/<scheme>/content -> list of BASE64 encoded keys for the particular scheme
+/hashing/<scheme>/content/<key> -> content item
+
 ## TODO
 
-* Secure posting
+* Finish implementing the basic API
 * Add validation based on hashing of the content to ensure that it infact syncs up.
-* Use an awesome data structure
+* Use an awesome data structure (going to use the file system)
 
 ## License
 
