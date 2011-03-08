@@ -14,7 +14,10 @@ Additionally, we can put new content in by way of a POST -- this still needs to 
 
 * Install node (https://github.com/ry/node/wiki/Installation)
 * Install npm (https://github.com/isaacs/npm)
-* NODE_ENV=(development|production) node cacey.js (note I use supervisor (https://github.com/fgnass/node-dev) during development)
+* NODE_ENV=(development|production) node cacey.js
+
+*Note* I use supervisor (https://github.com/fgnass/node-dev) during development, so the last step is:
+* NODE_ENV=development node-dev cacey.js
 
 ## API
 
