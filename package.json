@@ -1,0 +1,10 @@
+{
+    "name": "cacey",
+  , "version": "0.0.1",
+  , "description": "The idea is that this is a content addressable cache. So we can have a hashing scheme, and a hash, and then use that to locate a piece of content.",
+  , "keywords": [],
+  , "author": "Saem Ghani <saemghani@gmail.com>",
+  , "dependencies": {}
+  , "main": "index"
+  , "engines": { "node": "0.4.x" }
+}
