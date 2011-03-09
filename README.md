@@ -6,7 +6,7 @@ Means watchful or alert.
 
 The idea is that this is a content addressable cache. So we can have a hashing scheme, and a hash, and then use that to locate a piece of content.
 
-So clients could simply call the server server.com/<hashing scheme>/<base64 encoded hash>, and then get the content at that address, or a 404 if we do not have it.
+So clients could simply call the server server.com/\<hashing scheme\>/\<base64 encoded hash\>, and then get the content at that address, or a 404 if we do not have it.
 
 Additionally, we can put new content in by way of a POST -- this still needs to be secured.
 
@@ -17,15 +17,16 @@ Additionally, we can put new content in by way of a POST -- this still needs to 
 * NODE_ENV=(development|production) node cacey.js
 
 *Note* I use supervisor (https://github.com/fgnass/node-dev) during development, so the last step is:
+
 * NODE_ENV=development node-dev cacey.js
 
 ## API
 
-/content -> this is where you POST new content
-/hashing -> get a list of supported hashing schemes
-/hashing/<scheme> -> return whether this scheme is supported or not
-/hashing/<scheme>/content -> list of BASE64 encoded keys for the particular scheme
-/hashing/<scheme>/content/<key> -> content item
+    /content -> this is where you POST new content
+    /hashing -> get a list of supported hashing schemes
+    /hashing/<scheme> -> return whether this scheme is supported or not
+    /hashing/<scheme>/content -> list of BASE64 encoded keys for the particular scheme
+    /hashing/<scheme>/content/<key> -> content item
 
 ## TODO
 
